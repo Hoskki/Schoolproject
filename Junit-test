@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+// Klass som räknar rader och tecken
+class TextCounter {
+    private int lineCount = 0;
+    private int charCount = 0;
+
+    public void addLine(String line) {
+        lineCount++;
+        charCount += line.length();
+    }
+
+    public int getLineCount() {
+        return lineCount;
+    }
+
+    public int getCharCount() {
+        return charCount;
+    }
+}
+
+// Klass som läser in text och skriver ut resultatet
+class TextReader {
+    private TextCounter counter = new TextCounter();
+    private Scanner scanner;
+
+    // Konstruktor för användning i produktionsmiljö (läser från System.in)
+    public TextReader() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    // Konstruktor för testning (läser från en specifik Scanner-instans)
+    public TextReader(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public void readText() {
+        while (true) {
+            String line = scanner.nextLine();
+            if (line.trim().equalsIgnoreCase("stopp")) {
+                break;
+            }
+            counter.addLine(line);
+        }
+    }
+
+    public TextCounter getCounter() {
+        return counter;
+    }
+}
