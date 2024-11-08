@@ -1,7 +1,9 @@
+package src;
+
 import java.util.Scanner;
 
 // Klass som läser in text och skriver ut resultatet
-class TextReader {
+public class TextReader {
     private TextCounter counter = new TextCounter();
     private Scanner scanner = new Scanner(System.in);
 

@@ -1,7 +1,7 @@
-import java.util.Scanner;
+package src;
 
 // Klass som räknar rader och tecken
-class TextCounter {
+public class TextCounter {
     private int lineCount = 0;
     private int charCount = 0;
 

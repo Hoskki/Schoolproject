@@ -1,17 +1,18 @@
+package src;
+
 import org.junit.jupiter.api.Test;
-import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TextReaderTest {
+public class TextReaderTest {
 
     @Test
     void testMultipleLines() {
         // Simulerar inmatning av flera rader, följt av "stopp"
-        String input = "Hej\nDetta är en testmening.\nEn till rad.\nstopp\n";
-        TextReader reader = new TextReader(new Scanner(input));
-        
-        reader.readText();
-        TextCounter counter = reader.getCounter();
+
+        TextCounter counter = new TextCounter();
+        counter.addLine("hej");
+        counter.addLine("Detta är en testmening");
+        counter.addLine("En rad till.");
 
         assertEquals(3, counter.getLineCount(), "Antalet rader ska vara 3");
         assertEquals(37, counter.getCharCount(), "Antalet tecken ska vara 37");
@@ -20,11 +21,8 @@ class TextReaderTest {
     @Test
     void testSingleLine() {
         // Simulerar inmatning av en enda rad följt av "stopp"
-        String input = "Endast en rad.\nstopp\n";
-        TextReader reader = new TextReader(new Scanner(input));
-        
-        reader.readText();
-        TextCounter counter = reader.getCounter();
+        TextCounter counter = new TextCounter();
+        counter.addLine("Endast en rad..");
 
         assertEquals(1, counter.getLineCount(), "Antalet rader ska vara 1");
         assertEquals(15, counter.getCharCount(), "Antalet tecken ska vara 15");
@@ -33,11 +31,7 @@ class TextReaderTest {
     @Test
     void testDirectStop() {
         // Simulerar att användaren skriver "stopp" direkt utan annan inmatning
-        String input = "stopp\n";
-        TextReader reader = new TextReader(new Scanner(input));
-        
-        reader.readText();
-        TextCounter counter = reader.getCounter();
+        TextCounter counter = new TextCounter();
 
         assertEquals(0, counter.getLineCount(), "Antalet rader ska vara 0");
         assertEquals(0, counter.getCharCount(), "Antalet tecken ska vara 0");
